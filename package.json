@@ -1,0 +1,10 @@
+{
+  "license": "Apache-2.0",
+  "author": "Traxporta",
+  "name": "service-template",
+  "dependencies": {
+    "plugin": "^0.3.3",
+    "serverless": "^3.19.0",
+    "serverless-python-requirements": "^5.4.0"
+  }
+}

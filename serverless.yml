@@ -1,0 +1,30 @@
+service: psycopg2
+
+plugins:
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: ${opt:stage, "prod"}
+  region: ${opt:region, "us-west-2"}
+
+layers: 
+  psycopg2:
+    path: psycopg2
+    name: psycopg2
+    description: psycopg2
+
+custom:
+  pythonRequirements:
+    dockerImage: public.ecr.aws/sam/emulation-python3.9:latest
+    dockerizePip: non-linux
+
+package:
+  patterns:
+    - '!.git/**'
+    - '!.venv/**'
+    - '!env/**'
+    - '!node_modules/**'
+    - '!service/config/local.py'
+    - '!tests/**'
+    - '!config/**'
