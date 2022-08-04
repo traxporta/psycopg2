@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "service-template"
+name = "psycopg2"
 version = "1.0.0"
 description = ""
 authors = ["Alejandro Hernandez <a.hernandez@traxion.global>"]
