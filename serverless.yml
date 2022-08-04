@@ -19,6 +19,14 @@ custom:
     dockerImage: public.ecr.aws/sam/emulation-python3.9:latest
     dockerizePip: non-linux
 
+resources:
+  Outputs:
+    Psycopg2LayerExport:
+        Value:
+          Ref: Psycopg2LambdaLayer
+        Export:
+          Name: Psycopg2LambdaLayer-${self:provider.stage}
+
 package:
   patterns:
     - '!.git/**'
