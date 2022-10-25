@@ -1,6 +1,8 @@
 service: psycopg2
 
 plugins:
+  - serverless-plugin-package-path
+  - serverless-python-requirements
 
 provider:
   name: aws
@@ -18,6 +20,8 @@ custom:
   pythonRequirements:
     dockerImage: public.ecr.aws/sam/emulation-python3.9:latest
     dockerizePip: non-linux
+  packagePath:
+    path: python/lib/${self:provider.runtime}/site-packages
 
 resources:
   Outputs:
@@ -28,6 +32,11 @@ resources:
           Name: Psycopg2LambdaLayer-${self:provider.stage}
 
 package:
+  artifact: ./.serverless/psycopg2.zip
+  excludeDevDependencies: true
+  exclude:
+  - "**/__pycache__"
+  - "**/*.pyc"
   patterns:
     - '!.git/**'
     - '!.venv/**'
